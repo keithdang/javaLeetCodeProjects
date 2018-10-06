@@ -1,5 +1,20 @@
+//given a tax bracket table, calculate the taxable income with respect to a person's income
+//for example
+//=============
+//|income|rate|
+//=============
+//|10,000|10% |
+//|20,000|20% |
+//|40,000|30% |
+//|80,000|40% |
+//|+     |50% |
+//Someone who makes 27,000 will be taxed (10k*0.1)+(20k-10k)*(0.2)+(27k-20k)*(0.3)=1k+2k+2.1k=5.1k
+//This program utilizes 2 different methods
+//1)Iterative Tax, a brute force like approach that will sift through each tax bracket and decremenet the original income
+//2)Predisposed, Does a Binary Search to find the closest tax bracket and calculates the taxable income with a predisposed number
+//Method 2 is faster in search and execution
 package com.company;
-import java.util.*;
+
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -11,7 +26,7 @@ public class taxBracket {
         predisposedTax();
     }
     private void predisposedTax(){
-        double income=85000;
+        double income=27000;
         TreeMap<Double,taxInfo> taxBrackets=new TreeMap<>(); //treemaps are sorted maps
 
         double [][] arr={{10000.0,10.0,0},{20000.0,20.0,0},{40000.0,30.0,0},{80000.0,40.0,0},{Double.MAX_VALUE,50.0,0}};
